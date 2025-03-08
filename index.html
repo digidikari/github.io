@@ -36,7 +36,60 @@
             width: 100%;
             top: 0;
             z-index: 1000;
+            justify-content: space-between; /* Tambahkan ini */
         }
+
+        /* Bagian Kiri Header (Toggle + Logo) */
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Penyesuaian Toggle */
+        .sidebar-toggle {
+            width: 35px;
+            height: 35px;
+            background: #FF4754;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            border: none;
+        }
+
+        /* Search Bar di Kanan */
+        .search-container {
+            max-width: 400px;
+            margin-left: auto; /* Dorong ke kanan */
+        }
+
+       /* Penyesuaian Posisi Sidebar */
+        .sidebar {
+            top: 60px; /* Sesuaikan dengan tinggi header */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-left">
+            <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+            <a href="#" class="logo">MAMANG GIM</a>
+        </div>
+        
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Cari game...">
+        </div>
+    </header>
+
+    <!-- ... (Konten lainnya tetap sama) ... -->
+</body>
+</html>
 
         .logo {
             font-size: 1.8rem;
