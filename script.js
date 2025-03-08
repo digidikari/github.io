@@ -64,3 +64,19 @@ document.querySelector('.close').addEventListener('click', function() {
 
 // Inisialisasi
 renderGames(games);
+
+// Fungsi Toggle
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('active');
+}
+
+// Close sidebar ketika klik di luar
+document.addEventListener('click', (e) => {
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.querySelector('.sidebar-toggle');
+    
+    if (!sidebar.contains(e.target) && e.target !== toggleBtn) {
+        sidebar.classList.remove('active');
+    }
+});
