@@ -202,137 +202,106 @@
             <input type="text" class="search-input" placeholder="Cari game...">
         </div>
     </header>
+   
+    <!-- Toggle Button -->
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
 
     <!-- Sidebar -->
     <nav class="sidebar" id="sidebar">
-<div class="menu-section">
-    <div class="menu-title">
-        <span>🏠</span>
-        MAIN MENU
-    </div>
-    <ul class="menu-list">
-        <li class="menu-item active">
-            <span>🏠</span>
-            Home
-        </li>
-        <li class="menu-item">
-            <span>🔥</span>
-            Most Played
-        </li>
-        <li class="menu-item">
-            <span>🆕</span>
-            New
-            <span class="menu-badge">NEW</span>
-        </li>
-        <li class="menu-item">
-            <span>📈</span>
-            Trending
-        </li>
-        <li class="menu-item">
-            <span>🎁</span>
-            Specials
-        </li>
-        <li class="menu-item">
-            <span>🎲</span>
-            Surprise Me
-        </li>
-        <li class="menu-item">
-            <span>⏳</span>
-            Recently Played
-        </li>
-    </ul>
-</div>
-
-<div class="menu-section">
-    <div class="menu-title">
-        <span>🎮</span>
-        POPULAR CATEGORIES
-    </div>
-    <ul class="menu-list">
-        <li class="menu-item has-submenu">
-            <span>👥</span>
-            2 Player Games
-            <span class="arrow">▶</span>
-        </li>
-        <ul class="submenu">
-            <li class="menu-item" onclick="window.location='https://www.gamepix.com/f/two=player'">
-                <span>⚾</span>
-                Baseball
-            </li>
-            <li class="menu-item">
-                <span>🏀</span>
-                Basketball
-            </li>
-            <!-- Tambahkan game 2 player lainnya -->
-        </ul>
-        
-        <li class="menu-item has-submenu">
-            <span>🚗</span>
-            Car Games
-            <span class="arrow">▶</span>
-        </li>
-        <ul class="submenu">
-            <li class="menu-item" onclick="window.location='https://www.gamepix.com/t/car'">
-                <span>🏎️</span>
-                Racing
-            </li>
-            <li class="menu-item">
-                <span>🚲</span>
-                BMX
-            </li>
-        </ul>
-
-        <li class="menu-item has-submenu">
-            <span>🀄</span>
-            Mahjong
-            <span class="arrow">▶</span>
-        </li>
-        <ul class="submenu">
-            <li class="menu-item">
-                <span>🍄</span>
-                Mario
-            </li>
-            <li class="menu-item">
-                <span>🧮</span>
-                Math
-            </li>
-            <!-- Tambahkan subkategori lain sesuai SS3 -->
-        </ul>
-    </ul>
-</div>
-
-<!-- Tambahkan di bagian footer sidebar -->
-<div class="sidebar-footer">
-    <div class="menu-section">
-        <ul class="menu-list">
-            <li class="menu-item">
-                <span>🌐</span>
-                English
-            </li>
-            <li class="menu-item">
-                <span>📄</span>
-                About Us
-            </li>
-            <li class="menu-item">
-                <span>📧</span>
-                Contact Us
-            </li>
-            <li class="menu-item">
-                <span>🔒</span>
-                Privacy
-            </li>
-        </ul>
-        <div class="company-info">
-            <p>GamePix s.r.l.<br>
-            Via Marsala 29h<br>
-            0165 Rome, Italy<br>
-            VAT: 12327731001<br>
-            REA: RM-1365971</p>
-            <p>© 2025 GamePix</p>
+        <!-- Kategori Utama -->
+        <div class="menu-section">
+            <div class="menu-title">🏠 Kategori</div>
+            <ul class="menu-list">
+                <li class="menu-item">🏠 Home</li>
+                <li class="menu-item">🔥 Most Played</li>
+                <li class="menu-item">🆕 New</li>
+                <li class="menu-item">📈 Trending</li>
+                <li class="menu-item">🎁 Specials</li>
+                <li class="menu-item">🎉 Surprise Me</li>
+                <li class="menu-item">🕒 Recently Played</li>
+            </ul>
         </div>
-    </div>
-</div>
+
+        <!-- Semua Game -->
+        <div class="menu-section">
+            <div class="menu-title">🎮 Semua Game</div>
+            <ul class="menu-list">
+                <li class="menu-item" onclick="window.open('https://www.camepix.com/f/two=player')">👥 2 Player</li>
+                <li class="menu-item">⚾ Baseball</li>
+                <li class="menu-item">🏀 Basketball</li>
+                <li class="menu-item">🎲 Board</li>
+                <li class="menu-item" onclick="window.open('https://www.gamepix.com/t/car')">🚗 Car</li>
+                <li class="menu-item">😺 Cats</li>
+                <li class="menu-item">🃏 Card</li>
+                <li class="menu-item">❄️ Cool</li>
+                <li class="menu-item">👗 Dress Up</li>
+                <li class="menu-item">🔓 Escape</li>
+                <li class="menu-item">🥊 Fighting</li>
+                <li class="menu-item">💥 Flash</li>
+                <li class="menu-item">🎮 Fun</li>
+                <li class="menu-item">🔫 Gun</li>
+                <li class="menu-item">🌐 .io</li>
+                <li class="menu-item">👶 Kids</li>
+                <li class="menu-item">🀄 Mahjong</li>
+                <li class="menu-item">👨🔧 Mario</li>
+                <li class="menu-item">🧮 Math</li>
+                <li class="menu-item">🎴 Poker</li>
+                <li class="menu-item">🧩 Puzzle</li>
+                <li class="menu-item">🏁 Racing</li>
+                <li class="menu-item">⚔️ RPG</li>
+                <li class="menu-item">🔫 Shooter</li>
+                <li class="menu-item">🃏 Solitaire</li>
+                <li class="menu-item">🐍 Snake</li>
+                <li class="menu-item">⚽ Soccer</li>
+                <li class="menu-item">🎖️ War</li>
+                <li class="menu-item">🔠 Word</li>
+                <li class="menu-item">🧟 Zombie</li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div class="menu-section">
+            <div class="menu-title">🌐 Bahasa</div>
+            <ul class="menu-list">
+                <li class="menu-item">🇬🇧 English</li>
+                <li class="menu-item">📄 About Us</li>
+                <li class="menu-item">📧 Contact Us</li>
+                <li class="menu-item">🔒 Privacy</li>
+            </ul>
+            <div class="company-info">
+                <p>GamePix s.r.l.<br>
+                Via Marsala 29h<br>
+                0165 Rome, Italy<br>
+                VAT: 12327731001<br>
+                REA: RM-1365971</p>
+                <p class="copyright">© 2025 GamePix</p>
+            </div>
+        </div>
     </nav>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const toggleBtn = document.querySelector('.sidebar-toggle');
+            
+            sidebar.classList.toggle('active');
+            toggleBtn.classList.toggle('active');
+            toggleBtn.textContent = sidebar.classList.contains('active') ? '✕' : '☰';
+        }
+
+        document.addEventListener('click', (e) => {
+            const sidebar = document.getElementById('sidebar');
+            const toggleBtn = document.querySelector('.sidebar-toggle');
+            
+            if (!sidebar.contains(e.target) && !e.target.classList.contains('sidebar-toggle')) {
+                sidebar.classList.remove('active');
+                toggleBtn.classList.remove('active');
+                toggleBtn.textContent = '☰';
+            }
+        });
+    </script>
+</body>
+</html>
 
     <!-- Game Grid -->
     <main class="game-grid" id="gameGrid"></main>
