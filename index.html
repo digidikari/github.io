@@ -3,52 +3,365 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GamePix Clone</title>
-    <link rel="stylesheet" href="style.css">
+    <title>MAMANG GIM - Portal Game Terbaik</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #0f0f14;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .main-header {
+            display: flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: #1a1a20;
+            border-bottom: 2px solid #FF4754;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #FF4754;
+            text-decoration: none;
+            margin-right: 2rem;
+        }
+
+        /* Search Bar */
+        .search-container {
+            flex-grow: 1;
+            max-width: 400px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            border-radius: 20px;
+            border: none;
+            background: #2a2a30;
+            color: #fff;
+            outline: none;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: -250px;
+            top: 60px;
+            width: 250px;
+            height: calc(100% - 60px);
+            background: #1a1a20;
+            transition: 0.3s;
+            padding: 1rem;
+            overflow-y: auto;
+            border-right: 2px solid #2a2a30;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .sidebar-title {
+            color: #FF4754;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            padding-left: 0.5rem;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .menu-item {
+            padding: 0.6rem;
+            border-radius: 6px;
+            margin-bottom: 0.4rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .menu-item:hover {
+            background: #FF475420;
+        }
+
+        /* Game Grid */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            padding: 6rem 2rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .game-card {
+            background: #1a1a20;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: 0.2s;
+            border: 1px solid #2a2a30;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255,71,84,0.2);
+        }
+
+        .game-thumbnail {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-bottom: 2px solid #2a2a30;
+        }
+
+        .game-info {
+            padding: 1rem;
+        }
+
+        .game-title {
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+            color: #fff;
+        }
+
+        .game-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .game-genre {
+            color: #FF4754;
+        }
+
+        /* Fullscreen Modal */
+        .game-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.96);
+            display: none;
+            z-index: 9999;
+        }
+
+        .modal-content {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .game-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .game-grid {
+                grid-template-columns: repeat(3, 1fr);
+                padding: 5rem 1rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .game-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <h1 class="logo">GamePix Clone</h1>
-            <nav class="nav">
-                <a href="#" class="nav-link active">Beranda</a>
-                <a href="#" class="nav-link">Aksi</a>
-                <a href="#" class="nav-link">Puzzle</a>
-                <a href="#" class="nav-link">Olahraga</a>
-            </nav>
+    <header class="main-header">
+        <a href="#" class="logo">MAMANG GIM</a>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Cari game...">
         </div>
     </header>
 
-    <!-- Search Bar -->
-    <div class="search-container">
-        <div class="container">
-            <input type="text" id="searchInput" placeholder="Cari game...">
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-section">
+            <h3 class="sidebar-title">Kategori</h3>
+            <ul class="sidebar-menu">
+                <li class="menu-item">
+                    <span>🏃 Aksi</span>
+                </li>
+                <li class="menu-item">
+                    <span>🎮 Multiplayer</span>
+                </li>
+                <li class="menu-item">
+                    <span>🏎️ Balapan</span>
+                </li>
+                <li class="menu-item">
+                    <span>🧩 Puzzle</span>
+                </li>
+                <li class="menu-item">
+                    <span>🏀 Olahraga</span>
+                </li>
+            </ul>
         </div>
-    </div>
+
+        <div class="sidebar-section">
+            <h3 class="sidebar-title">Populer</h3>
+            <ul class="sidebar-menu">
+                <li class="menu-item">
+                    <span>🔥 Trending</span>
+                </li>
+                <li class="menu-item">
+                    <span>⭐ Favorit</span>
+                </li>
+                <li class="menu-item">
+                    <span>🆕 Terbaru</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="sidebar-section">
+            <h3 class="sidebar-title">Akun</h3>
+            <ul class="sidebar-menu">
+                <li class="menu-item">
+                    <span>🔐 Login</span>
+                </li>
+                <li class="menu-item">
+                    <span>❤️ Favorit Saya</span>
+                </li>
+                <li class="menu-item">
+                    <span>⚙️ Pengaturan</span>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <!-- Game Grid -->
-    <div class="container">
-        <div class="game-grid" id="gameGrid">
-            <!-- Game cards akan diisi oleh JavaScript -->
-        </div>
+    <main class="game-grid" id="gameGrid"></main>
+
+    <!-- Fullscreen Modal -->
+    <div class="game-modal" id="gameModal">
+        <iframe class="modal-content" id="gameFrame" allowfullscreen></iframe>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 GamePix Clone. All rights reserved.</p>
-        </div>
-    </footer>
+    <script>
+        // Data Game (50 contoh)
+        const games = Array.from({length: 50}, (_, i) => ({
+            id: i+1,
+            title: `Game ${i+1}: Petualangan Epik`,
+            genre: ["Aksi", "Balapan", "Puzzle", "Olahraga"][i%4],
+            rating: (Math.random() * 5).toFixed(1),
+            players: Math.floor(Math.random() * 10000),
+            category: ["Trending", "Baru", "Populer"][i%3],
+            thumbnail: `https://picsum.photos/200/150?random=${i+1}`,
+            embedUrl: "https://play.gamepix.com/embed/game-id-" + (i+1)
+        }));
 
-    <!-- Modal untuk Embed Game -->
-    <div class="modal" id="gameModal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <iframe id="gameFrame" width="100%" height="600" frameborder="0"></iframe>
-        </div>
-    </div>
+        // Generate Game Cards
+        function generateGameCards() {
+            const grid = document.getElementById('gameGrid');
+            grid.innerHTML = games.map(game => `
+                <div class="game-card" onclick="openGame('${game.embedUrl}')">
+                    <img src="${game.thumbnail}" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3 class="game-title">${game.title}</h3>
+                        <div class="game-meta">
+                            <span class="game-genre">${game.genre}</span>
+                            <span>⭐ ${game.rating}</span>
+                        </div>
+                        <div class="game-meta">
+                            <span>👥 ${game.players}</span>
+                            <span>🏷️ ${game.category}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
 
-    <script src="script.js"></script>
+        // Game Control
+        function openGame(url) {
+            document.getElementById('gameFrame').src = url;
+            document.getElementById('gameModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGame() {
+            document.getElementById('gameFrame').src = '';
+            document.getElementById('gameModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Sidebar Toggle
+        document.addEventListener('click', (e) => {
+            const sidebar = document.getElementById('sidebar');
+            if(!e.target.closest('.sidebar') && !e.target.closest('.logo')) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        document.querySelector('.logo').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('sidebar').classList.toggle('active');
+        });
+
+        // Search Functionality
+        document.querySelector('.search-input').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filtered = games.filter(game => 
+                game.title.toLowerCase().includes(searchTerm) || 
+                game.genre.toLowerCase().includes(searchTerm)
+            );
+            renderFilteredGames(filtered);
+        });
+
+        function renderFilteredGames(filteredGames) {
+            const grid = document.getElementById('gameGrid');
+            grid.innerHTML = filteredGames.map(game => `
+                <div class="game-card" onclick="openGame('${game.embedUrl}')">
+                    <img src="${game.thumbnail}" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3 class="game-title">${game.title}</h3>
+                        <div class="game-meta">
+                            <span class="game-genre">${game.genre}</span>
+                            <span>⭐ ${game.rating}</span>
+                        </div>
+                        <div class="game-meta">
+                            <span>👥 ${game.players}</span>
+                            <span>🏷️ ${game.category}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize
+        generateGameCards();
+
+        // Close modal with ESC
+        document.addEventListener('keydown', (e) => {
+            if(e.key === 'Escape') closeGame();
+        });
+    </script>
 </body>
 </html>
