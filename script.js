@@ -12,12 +12,15 @@ async function init() {
 
 // Ambil data dari GamePix
 async function loadGames() {
+  try {
     const response = await fetch(`${RSS_FEED}?sid=${GAMEPIX_SID}`);
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     const data = await response.json();
-    return data.items.map(game => ({
-        ...game,
-        embedUrl: `${game.url}/embed?sid=${GAMEPIX_SID}`
-    }));
+    return data.items || [];
+  } catch (error) {
+    console.error('Failed to load games:', error);
+    return [];
+  }
 }
 
 // Render game sesuai template Anda
