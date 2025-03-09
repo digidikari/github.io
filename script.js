@@ -1,82 +1,91 @@
-// Data Game (Contoh)
-const games = [
-    {
-        id: 1,
-        title: "Super Adventure",
-        category: "Aksi",
-        thumbnail: "https://via.placeholder.com/250x180",
-        embedUrl: "games/game1.html"
-    },
-    {
-        id: 2,
-        title: "Puzzle Master",
-        category: "Puzzle",
-        thumbnail: "https://via.placeholder.com/250x180",
-        embedUrl: "games/game2.html"
-    },
-    // Tambahkan game lain di sini
-];
+// Fungsi utama
+async function init() {
+    try {
+        const games = await loadGames();
+        renderGames(games);
+        initSearch();
+        initSidebar();
+    } catch (error) {
+        showError('Gagal memuat game');
+    }
+}
 
-// Render Game Cards
-function renderGames(gamesArray) {
-    const gameGrid = document.getElementById('gameGrid');
-    gameGrid.innerHTML = '';
+// Ambil data dari GamePix
+async function loadGames() {
+    const response = await fetch(`${RSS_FEED}?sid=${GAMEPIX_SID}`);
+    const data = await response.json();
+    return data.items.map(game => ({
+        ...game,
+        embedUrl: `${game.url}/embed?sid=${GAMEPIX_SID}`
+    }));
+}
 
-    gamesArray.forEach(game => {
-        const card = `
-            <div class="game-card">
-                <img src="${game.thumbnail}" class="game-thumbnail" alt="${game.title}">
-                <div class="game-info">
-                    <h3 class="game-title">${game.title}</h3>
-                    <p class="game-category">${game.category}</p>
-                    <button class="play-button" onclick="openModal('${game.embedUrl}')">Mainkan</button>
+// Render game sesuai template Anda
+function renderGames(games) {
+    const grid = document.getElementById('gameGrid');
+    grid.innerHTML = games.map(game => `
+        <div class="game-card" onclick="openGame('${game.embedUrl}')">
+            <img src="${game.thumbnail}?w=400" 
+                 class="game-thumbnail"
+                 onerror="this.src='https://via.placeholder.com/400x300?text=Thumbnail+Error'">
+            <div class="game-info">
+                <h3>${game.title}</h3>
+                <div class="game-meta">
+                    <span class="game-genre">${game.category}</span>
+                    <span>⭐ ${(game.quality_score * 5).toFixed(1)}</span>
+                </div>
+                <div class="game-meta">
+                    <span>👥 ${game.players}</span>
+                    <span>🏷️ ${game.tags?.[0] || 'General'}</span>
                 </div>
             </div>
-        `;
-        gameGrid.innerHTML += card;
+        </div>
+    `).join('');
+}
+
+// Fungsi buka game
+function openGame(url) {
+    const iframe = document.createElement('iframe');
+    iframe.src = url;
+    iframe.style.cssText = `
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 12px;
+    `;
+    
+    Swal.fire({
+        html: iframe,
+        showCloseButton: true,
+        width: '90%',
+        height: '90%',
+        showConfirmButton: false,
+        background: '#0f0f14',
+        customClass: {
+            popup: 'custom-modal'
+        }
     });
 }
 
-// Fitur Pencarian
-document.getElementById('searchInput').addEventListener('input', function(e) {
-    const searchTerm = e.target.value.toLowerCase();
-    const filteredGames = games.filter(game => 
-        game.title.toLowerCase().includes(searchTerm) || 
-        game.category.toLowerCase().includes(searchTerm)
-    );
-    renderGames(filteredGames);
-});
-
-// Modal Control
-function openModal(embedUrl) {
-    const modal = document.getElementById('gameModal');
-    const iframe = document.getElementById('gameFrame');
-    iframe.src = embedUrl;
-    modal.style.display = "block";
+// Pencarian
+function initSearch() {
+    document.querySelector('.search-input').addEventListener('input', function(e) {
+        const term = e.target.value.toLowerCase();
+        document.querySelectorAll('.game-card').forEach(card => {
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            card.style.display = title.includes(term) ? 'block' : 'none';
+        });
+    });
 }
 
-document.querySelector('.close').addEventListener('click', function() {
-    const modal = document.getElementById('gameModal');
-    const iframe = document.getElementById('gameFrame');
-    iframe.src = "";
-    modal.style.display = "none";
-});
-
-// Inisialisasi
-renderGames(games);
-
-// Fungsi Toggle
-function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    sidebar.classList.toggle('active');
+// Error handling
+function showError(msg) {
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    errorDiv.textContent = msg;
+    document.body.prepend(errorDiv);
+    setTimeout(() => errorDiv.remove(), 3000);
 }
 
-// Close sidebar ketika klik di luar
-document.addEventListener('click', (e) => {
-    const sidebar = document.getElementById('sidebar');
-    const toggleBtn = document.querySelector('.sidebar-toggle');
-    
-    if (!sidebar.contains(e.target) && e.target !== toggleBtn) {
-        sidebar.classList.remove('active');
-    }
-});
+// Jalankan saat halaman dimuat
+document.addEventListener('DOMContentLoaded', init);
