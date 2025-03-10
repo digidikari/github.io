@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Header -->
     <header class="main-header">
         <div class="header-left">
             <button class="sidebar-toggle" type="button" onclick="toggleSidebar()">☰</button>
@@ -18,29 +17,11 @@
         </div>
     </header>
 
-    <!-- Sidebar -->
-    <nav class="sidebar" id="sidebar">
-        <div class="sidebar-section">
-            <div class="sidebar-title">🏠 Kategori</div>
-            <ul class="sidebar-menu">
-                <li class="menu-item">🏠 Home</li>
-                <li class="menu-item">🔥 Most Played</li>
-                <li class="menu-item">🆕 New</li>
-                <li class="menu-item">📈 Trending</li>
-                <li class="menu-item">🎁 Specials</li>
-                <li class="menu-item">🎉 Surprise Me</li>
-                <li class="menu-item">🕒 Recently Played</li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Game Grid -->
-    <main class="game-grid" id="gameGrid"></main>
-
-    <!-- Fullscreen Modal -->
-    <div class="game-modal" id="gameModal">
-        <iframe class="modal-content" id="gameFrame" allowfullscreen="true"></iframe>
-    </div>
+    <!-- Tempat menampilkan daftar game -->
+    <section class="game-container">
+        <h2>🔥 Game Terbaru</h2>
+        <div class="game-grid" id="gameGrid"></div>
+    </section>
 
     <script src="script.js" defer></script>
 </body>
