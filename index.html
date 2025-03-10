@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MAMANG GIM - Portal Game Terbaik</title>
-    <link rel="stylesheet" href="style.css"> <!-- Memanggil CSS eksternal -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Header -->
@@ -14,7 +14,7 @@
             <a href="#" class="logo">MAMANG GIM</a>
         </div>
         <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="Cari game...">
+            <input type="text" class="search-input" placeholder="Cari game...">
         </div>
     </header>
 
@@ -27,6 +27,9 @@
                 <li class="menu-item">🔥 Most Played</li>
                 <li class="menu-item">🆕 New</li>
                 <li class="menu-item">📈 Trending</li>
+                <li class="menu-item">🎁 Specials</li>
+                <li class="menu-item">🎉 Surprise Me</li>
+                <li class="menu-item">🕒 Recently Played</li>
             </ul>
         </div>
     </nav>
@@ -37,9 +40,8 @@
     <!-- Fullscreen Modal -->
     <div class="game-modal" id="gameModal">
         <iframe class="modal-content" id="gameFrame" allowfullscreen></iframe>
-        <button class="close" onclick="closeGame()">✕</button>
     </div>
 
-    <script src="script.js"></script> <!-- Memanggil JavaScript eksternal -->
+    <script src="script.js"></script>
 </body>
 </html>
