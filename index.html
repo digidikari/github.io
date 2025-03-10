@@ -10,7 +10,7 @@
     <!-- Header -->
     <header class="main-header">
         <div class="header-left">
-            <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+            <button class="sidebar-toggle" type="button" onclick="toggleSidebar()">☰</button>
             <a href="#" class="logo">MAMANG GIM</a>
         </div>
         <div class="search-container">
@@ -39,9 +39,9 @@
 
     <!-- Fullscreen Modal -->
     <div class="game-modal" id="gameModal">
-        <iframe class="modal-content" id="gameFrame" allowfullscreen></iframe>
+        <iframe class="modal-content" id="gameFrame" allowfullscreen="true"></iframe>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
